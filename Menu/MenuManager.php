@@ -34,6 +34,7 @@ class MenuManager
         $currentExternalNetworkId = $this->requestStack->getCurrentRequest()->attributes->get('externalNetworkId');
         $currentSeasonId = $this->requestStack->getCurrentRequest()->attributes->get('seasonId');
         $translator = $this->container->get('translator');
+        $route = $this->requestStack->getCurrentRequest()->get('_route');
         $menu = array();
 
         if (count($userNetworks) >= 1) {
@@ -113,6 +114,8 @@ class MenuManager
             'externalNetworkId' => $currentNetwork
         ));
 
+        $edit->setRoutePatternForHighlight(array('/.*_stop_point_.*/', '/.*_calendar_.*/', '/.*_timetable_.*/'));
+
         $menu[] = $edit;
 
         $timecard = new BusinessMenuItem();
@@ -132,6 +135,8 @@ class MenuManager
                 'externalNetworkId' => $currentNetwork
             ));
 
+            $area->setRoutePatternForHighlight(array('/.*_area_.*/'));
+
             $menu[] = $area;
         }
 
@@ -143,6 +148,8 @@ class MenuManager
                 'externalNetworkId' => $currentNetwork
             ));
 
+            $layout->setRoutePatternForHighlight(array('/.*_layout_config_.*/'));
+
             $menu[] = $layout;
         }
 
@@ -153,6 +160,8 @@ class MenuManager
             $customer->setParameters(array(
                 'externalNetworkId' => $currentNetwork
             ));
+
+            $customer->setRoutePatternForHighlight(array('/.*_customer_.*/'));
 
             $menu[] = $customer;
         }
