@@ -118,6 +118,15 @@ class MenuManager
 
         $menu[] = $edit;
 
+        $timecard = new BusinessMenuItem();
+        $timecard->setName($translator->trans('menu.list_timecard'));
+        $timecard->setRoute('canal_tp_mtt_timecard_list');
+        $timecard->setParameters(array(
+            'externalNetworkId' => $currentNetwork
+        ));
+
+        $menu[] = $timecard;
+
         if ($this->container->get('security.context')->isGranted(array('BUSINESS_LIST_AREA', 'BUSINESS_MANAGE_AREA'))) {
             $area = new BusinessMenuItem();
             $area->setName($translator->trans('menu.area_manage'));
