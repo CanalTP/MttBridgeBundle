@@ -109,12 +109,6 @@ class MenuManager
             $menu[] = $seasons;
         }
 
-        $calendars = new BusinessMenuItem();
-        $calendars->setName($translator->trans('menu.calendar_list'));
-        $calendars->setRoute('canal_tp_mtt_calendars_list');
-        $calendars->setRoutePatternForHighlight(['/.*_calendars_.*/', ]);
-        $menu[] = $calendars;
-
         $edit = new BusinessMenuItem();
         $edit->setName($translator->trans('menu.edit_timetables'));
         $edit->setRoute('canal_tp_mtt_stop_point_list_defaults');
